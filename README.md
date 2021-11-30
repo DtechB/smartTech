@@ -1,2 +1,2 @@
 # smartTech
-A hole website for analysis and design smart phone with django and bootstrap.
+A hole website for analysis and gathering information about smart phones with django and bootstrap (frameworks).
