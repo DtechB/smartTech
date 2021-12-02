@@ -1,15 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'blog/blog-base.html' %}
 {% load static %}
 
-{% block title %}Smart Tech Blog{% endblock %}
+{% block blog-title %}Smart Tech Blog{% endblock %}
 
-{% block header-refrences %}
-    <link href="{% static 'css/style-blog.css' %}" rel="stylesheet">
-{% endblock %}
-
-{% block content %}
-    {% include 'header.html' %}
-
+{% block blog-content %}
     <main id="main">
 
         <!-- ======= Breadcrumbs ======= -->
@@ -17,7 +11,7 @@
             <div class="container">
 
                 <ol>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{% url 'main-page-index' %}">Home</a></li>
                     <li>Blog</li>
                 </ol>
                 <h2>Blog</h2>
@@ -66,7 +60,7 @@
                                     perferendis dolore.
                                 </p>
                                 <div class="read-more">
-                                    <a href="#">Read More</a>
+                                    <a href="{% url 'post' %}">Read More</a>
                                 </div>
                             </div>
 
@@ -285,10 +279,5 @@
         </section><!-- End Blog Section -->
 
     </main><!-- End #main -->
-
-    {% include 'footer.html' %}
 {% endblock %}
 
-{% block footer-refrences %}
-    <script src="{% static 'js/script-blog.js' %}"></script>
-{% endblock %}

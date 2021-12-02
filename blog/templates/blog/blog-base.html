@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% block blog-title %}{% endblock %}{% endblock %}
+
+{% block header-refrences %}
+    <link href="{% static 'css/style-blog.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    {% include 'header.html' %}
+    {% block blog-content %}{% endblock %}
+    {% include 'footer.html' %}
+{% endblock %}
+
+{% block footer-refrences %}
+    <script src="{% static 'js/script-blog.js' %}"></script>
+{% endblock %}
