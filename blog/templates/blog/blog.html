@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Smart Tech Blog{% endblock %}
+
+{% block header-refrences %}
+    <link href="{% static 'css/style-blog.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% include 'header.html' %}
+
+
+
+    {% include 'footer.html' %}
+{% endblock %}
+
+{% block footer-refrences %}
+    <script src="{% static 'js/script-blog.js' %}"></script>
+{% endblock %}
