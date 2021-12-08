@@ -48,7 +48,7 @@ class PostDescription(models.Model):
 
 class PostImgUrl(models.Model):
     id = models.BigIntegerField(primary_key=True)
-    img_url = models.CharField(max_length=255)
+    img_url = models.CharField(max_length=2083)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
 
@@ -79,7 +79,7 @@ class SmartPhoneDescription(models.Model):
 
 class SmartPhoneImgUrl(models.Model):
     id = models.BigIntegerField(primary_key=True)
-    img_url = models.CharField(max_length=255)
+    img_url = models.CharField(max_length=2083)
     smartphone = models.ForeignKey(Post, on_delete=models.CASCADE)
 
 
