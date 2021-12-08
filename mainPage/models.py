@@ -36,7 +36,7 @@ class Post(models.Model):
     publish = models.DateTimeField(auto_now=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user')
     comment_user = models.ManyToManyField(User, through='Comment')
 
 
@@ -66,6 +66,7 @@ class SmartPhone(models.Model):
     color = models.CharField(max_length=255)
     brand = models.CharField(max_length=255)
     time_release = models.DateField(null=True)
+    slug = models.SlugField(default='+')
     score = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=0)
     user = models.ForeignKey(User, models.PROTECT)
 
