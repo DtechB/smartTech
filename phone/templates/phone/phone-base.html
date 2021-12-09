@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header-refrences %}
+    <link href="{% static 'css/style-mainPage.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    {% include 'header.html' %}
+    {% block phone-content %}{% endblock %}
+    {% include 'footer.html' %}
+{% endblock %}
+
+{% block footer-refrences %}
+    <script src="{% static 'js/script-phone.js' %}"></script>
+{% endblock %}
