@@ -16,6 +16,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     birth_date = models.DateField(null=True)
+    password = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     membership = models.CharField(max_length=1, choices=MEMBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE)
 
@@ -74,13 +75,13 @@ class SmartPhone(models.Model):
 class SmartPhoneDescription(models.Model):
     id = models.BigIntegerField(primary_key=True)
     description = models.TextField()
-    smartphone = models.ForeignKey(Post, on_delete=models.CASCADE)
+    smartphone = models.ForeignKey(SmartPhone, on_delete=models.CASCADE)
 
 
 class SmartPhoneImgUrl(models.Model):
     id = models.BigIntegerField(primary_key=True)
     img_url = models.CharField(max_length=2083)
-    smartphone = models.ForeignKey(Post, on_delete=models.CASCADE)
+    smartphone = models.ForeignKey(SmartPhone, on_delete=models.CASCADE)
 
 
 class Comment(models.Model):

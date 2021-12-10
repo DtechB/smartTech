@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'smarttech',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': '41532Dbz1379'
+        'PASSWORD': '12345678'
     }
 }
 
