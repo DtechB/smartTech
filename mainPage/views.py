@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from .models import SmartPhone, Post
 
 
 def index(request):
+    smartphones = SmartPhone.objects.select_related('SmartPhoneImgUrl').all()
     return render(request, 'mainPage/index.html')
 
 

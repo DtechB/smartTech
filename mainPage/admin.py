@@ -9,10 +9,11 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(models.Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'created', 'status']
+    list_display = ['title', 'author', 'slug']
     prepopulated_fields = {
         'slug': ['title']
     }
+    exclude = ('user',)
 
 
 @admin.register(models.PostDescription)
@@ -27,10 +28,12 @@ class PostImgAdmin(admin.ModelAdmin):
 
 @admin.register(models.SmartPhone)
 class SmartPhoneAdmin(admin.ModelAdmin):
-    list_display = ['name', 'score']
+    list_display = ['name', 'score', 'slug']
+    list_editable = ['score']
     prepopulated_fields = {
         'slug': ['name']
     }
+    exclude = ('user',)
 
 
 @admin.register(models.SmartPhoneDescription)

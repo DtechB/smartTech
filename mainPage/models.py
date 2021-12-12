@@ -16,7 +16,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     birth_date = models.DateField(null=True)
-    password = models.CharField(max_length=255)
+    password = models.CharField(max_length=255, null=True)
     email = models.EmailField(unique=True)
     membership = models.CharField(max_length=1, choices=MEMBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE)
 
