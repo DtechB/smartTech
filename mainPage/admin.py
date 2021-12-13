@@ -1,10 +1,15 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from . import models
+from .models import User
 
 
-@admin.register(models.User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'email']
+UserAdmin.fieldsets[2][1]['fields'] = (
+    'is_active', 'is_staff', 'is_superuser',
+    'groups', 'user_permissions', 'membership', 'birth_date'
+)
+
+admin.site.register(User, UserAdmin)
 
 
 @admin.register(models.Post)
