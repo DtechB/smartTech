@@ -23,13 +23,14 @@ class PostDescriptionAdmin(admin.ModelAdmin):
 
 @admin.register(models.PostImgUrl)
 class PostImgAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['id', 'img_url']
+    list_editable = ['img_url']
 
 
 @admin.register(models.SmartPhone)
 class SmartPhoneAdmin(admin.ModelAdmin):
-    list_display = ['name', 'score', 'slug']
-    list_editable = ['score']
+    list_display = ['name', 'slug', 'brand']
+    list_editable = ['brand']
     prepopulated_fields = {
         'slug': ['name']
     }
@@ -43,7 +44,8 @@ class SmartPhoneDescriptionAdmin(admin.ModelAdmin):
 
 @admin.register(models.SmartPhoneImgUrl)
 class SmartPhoneImgAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['id', 'img_url']
+    list_editable = ['img_url']
 
 
 @admin.register(models.Comment)
