@@ -16,6 +16,9 @@ class User(AbstractUser):
 
     birth_date = models.DateField(null=True, blank=True)
     membership = models.CharField(max_length=1, choices=MEMBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE)
+    img_avatar = models.CharField(max_length=2083,
+                                  default='https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector'
+                                          '-avatar-png-image_1541962.jpg')
 
 
 class Post(models.Model):
@@ -36,6 +39,7 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user', null=True)
     comment_user = models.ManyToManyField(User, through='Comment')
+    img_primary = models.CharField(max_length=2083, null=True)
 
 
 class PostDescription(models.Model):
@@ -67,6 +71,7 @@ class SmartPhone(models.Model):
     slug = models.SlugField(default='+')
     score = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=0)
     user = models.ForeignKey(User, models.PROTECT, null=True)
+    img_primary = models.CharField(max_length=2083, null=True)
 
 
 class SmartPhoneDescription(models.Model):

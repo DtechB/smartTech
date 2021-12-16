@@ -5,8 +5,8 @@ from .models import User
 
 
 UserAdmin.fieldsets[2][1]['fields'] = (
-    'is_active', 'is_staff', 'is_superuser',
-    'groups', 'user_permissions', 'membership', 'birth_date'
+    'is_active', 'is_staff', 'is_superuser', 'groups',
+    'user_permissions', 'membership', 'birth_date', 'img_avatar'
 )
 
 admin.site.register(User, UserAdmin)
@@ -34,8 +34,8 @@ class PostImgAdmin(admin.ModelAdmin):
 
 @admin.register(models.SmartPhone)
 class SmartPhoneAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'brand']
-    list_editable = ['brand']
+    list_display = ['name', 'img_primary', 'brand']
+    list_editable = ['brand', 'img_primary']
     prepopulated_fields = {
         'slug': ['name']
     }

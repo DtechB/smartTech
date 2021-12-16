@@ -40,7 +40,7 @@
                                 <tbody>
                                 {% for phones in phone %}
                                     <tr>
-                                        <th scope="row"><a href="#"><img src="{% static 'img/product-1.jpg' %}" alt=""></a>
+                                        <th scope="row"><a href="#"><img src="{{ phones.img_primary }}" alt=""></a>
                                         </th>
                                         <td><a href="#" class="text-primary fw-bold">{{ phones.name}}</a>
                                         </td>
