@@ -4,8 +4,8 @@ from .forms import LoginForms, RegisterForms, ForgotForms
 
 
 def index(request):
-
-    return render(request, 'mainPage/index.html')
+    phones = SmartPhone.objects.all()[:3]
+    return render(request, 'mainPage/index.html', context={'phones': phones})
 
 
 def register(request):

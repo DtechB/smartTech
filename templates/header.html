@@ -11,32 +11,22 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="#">Home</a></li>
-                <li><a class="nav-link scrollto" href="#">About</a></li>
-                <li><a class="nav-link scrollto" href="#">Services</a></li>
-                <li><a class="nav-link scrollto" href="#">Portfolio</a></li>
-                <li><a class="nav-link scrollto" href="#">Team</a></li>
+                <li><a class="nav-link scrollto active" href="{% url 'main-page-index'%}">Home</a></li>
+                <li><a class="nav-link scrollto" href="{% url 'main-page-index' %}#team">Team</a></li>
+                <li><a class="nav-link scrollto" href="{% url 'phone:phones' %}">Phones</a></li>
                 <li><a href="{% url 'blog' %}">Blog</a></li>
-                <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                                class="bi bi-chevron-right"></i></a>
-                            <ul>
-                                <li><a href="#">Deep Drop Down 1</a></li>
-                                <li><a href="#">Deep Drop Down 2</a></li>
-                                <li><a href="#">Deep Drop Down 3</a></li>
-                                <li><a href="#">Deep Drop Down 4</a></li>
-                                <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
-                    </ul>
-                </li>
-                <li><a class="nav-link scrollto" href="#">Contact</a></li>
-                <li><a class="getstarted scrollto" href="{% url 'account:login' %}">Get Started</a></li>
+                <li><a class="nav-link scrollto" href="{% url 'main-page-index'%}#contact">Contact</a></li>
+                {% if user.is_authenticated %}
+                    <li>
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{% url 'account:panel' %}">
+                            <img src="{{ user.img_avatar }}" alt="Profile" width="36px" height="36px"
+                                 class="rounded-circle border border-2 border-secondary">
+                        </a><!-- End Profile Iamge Icon -->
+                    </li>
+                {% else %}
+                    <li><a class="getstarted scrollto" href="{% url 'account:login' %}">Get Started</a></li>
+                {% endif %}
+
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
