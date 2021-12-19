@@ -35,7 +35,7 @@
                             </div>
 
                             <h2 class="entry-title">
-                                <a href="#">{{ post.title }}</a>
+                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                             </h2>
 
                             <div class="entry-meta">
@@ -56,7 +56,7 @@
                                     {{ post.postdescription__description|truncatewords:60 }}
                                 </p>
                                 <div class="read-more">
-                                    <a href="{% url 'post' %}">Read More</a>
+                                    <a href="{{ post.get_absolute_url }}">Read More</a>
                                 </div>
                             </div>
 

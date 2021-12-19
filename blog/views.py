@@ -1,11 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from mainPage.models import Post, PostDescription, PostImgUrl
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def blog(request):
-    posts = Post.objects.values('post_id', 'author', 'postimgurl__img_url',
-                                'postdescription__description', 'created', 'title')
+    posts = Post.objects.all()
 
     paginator = Paginator(posts, 4)
     page = request.GET.get('page')
@@ -22,5 +21,6 @@ def blog(request):
     })
 
 
-def single_blog(request):
-    return render(request, 'blog/blog-single.html')
+def single_blog(request, post, pk):
+    post = get_object_or_404(Post, slug=post, pk=pk)
+    return render(request, 'blog/blog-single.html', {'posts': post})

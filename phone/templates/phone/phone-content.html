@@ -42,17 +42,17 @@
 
                         <div class="col-lg-4 col-md-6 portfolio-item {{ phone.brand }}">
                             <div class="portfolio-wrap">
-                                <img src="{{ phone.smartphoneimgurl__img_url }}"
+                                <img src="{{ phone.img_primary }}"
                                      height="255px" width="100%" alt="">
                                 <div class="portfolio-info">
                                     <h4>{{ phone.name }}</h4>
                                     <p>{{ phone.brand }}</p>
                                     <div class="portfolio-links">
-                                        <a href="{{ phone.smartphoneimgurl__img_url }}"
+                                        <a href="{{ phone.img_primary }}"
                                            data-gallery="portfolioGallery"
                                            class="portfokio-lightbox" title="{{ phone.name }}"><i
                                                 class="bi bi-search"></i></a>
-                                        <a href="#" title="More Details"><i class="bi bi-link"></i></a>
+                                        <a href="{{ phone.get_absolute_url }}" title="More Details"><i class="bi bi-link"></i></a>
                                     </div>
                                 </div>
                             </div>

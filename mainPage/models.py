@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.urls import reverse
 
 
 class User(AbstractUser):
@@ -41,6 +42,9 @@ class Post(models.Model):
     img_primary = models.CharField(max_length=2083, null=True)
     userpost = models.ManyToManyField(User, related_name='user', null=True, blank=True)
 
+    def get_absolute_url(self):
+        return reverse('post', args=[self.slug, self.post_id])
+
 
 class PostDescription(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -72,6 +76,9 @@ class SmartPhone(models.Model):
     score = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=0)
     user = models.ManyToManyField(User, null=True, blank=True)
     img_primary = models.CharField(max_length=2083, null=True)
+
+    def get_absolute_url(self):
+        return reverse('phone:single_phone', args=[self.slug, self.smartphone_id])
 
 
 class SmartPhoneDescription(models.Model):

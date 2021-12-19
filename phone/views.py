@@ -1,17 +1,16 @@
 from django.db.models import Count
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from mainPage.models import SmartPhone, SmartPhoneImgUrl
 
 
 def index(request):
-    nums = [i for i in range(3, 61, 3)]
-    phones = SmartPhone.objects.filter(smartphoneimgurl__id__in=nums).values('name', 'brand',
-                                                                             'smartphoneimgurl__img_url',
-                                                                             'smartphoneimgurl__id')
+
+    phones = SmartPhone.objects.all()
     return render(request, 'phone/phone-content.html', context={
         'phones': phones
     })
 
 
-def single_phone(request):
-    return render(request, 'phone/phone-single.html')
+def single_phone(request, phone, pk):
+    phone = get_object_or_404(SmartPhone, slug=phone, pk=pk)
+    return render(request, 'phone/phone-single.html', {'phones': phone})
