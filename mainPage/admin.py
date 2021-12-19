@@ -18,7 +18,6 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ['title']
     }
-    exclude = ('user',)
 
 
 @admin.register(models.PostDescription)

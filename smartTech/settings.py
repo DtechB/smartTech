@@ -16,6 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 LOGIN_REDIRECT_URL = 'account:panel'
+LOGOUT_REDIRECT_URL = 'account:panel'
 LOGIN_URL = 'account:login'
 
 

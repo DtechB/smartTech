@@ -37,9 +37,9 @@ class Post(models.Model):
     publish = models.DateTimeField(auto_now=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user', null=True)
     comment_user = models.ManyToManyField(User, through='Comment')
     img_primary = models.CharField(max_length=2083, null=True)
+    userpost = models.ManyToManyField(User, related_name='user', null=True, blank=True)
 
 
 class PostDescription(models.Model):
@@ -70,7 +70,7 @@ class SmartPhone(models.Model):
     time_release = models.DateField(null=True)
     slug = models.SlugField(default='+')
     score = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=0)
-    user = models.ForeignKey(User, models.PROTECT, null=True)
+    user = models.ManyToManyField(User, null=True, blank=True)
     img_primary = models.CharField(max_length=2083, null=True)
 
 
