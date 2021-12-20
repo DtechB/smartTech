@@ -5,8 +5,8 @@ from .models import User
 
 
 UserAdmin.fieldsets[2][1]['fields'] = (
-    'is_active', 'is_staff', 'is_superuser', 'groups',
-    'user_permissions', 'membership', 'birth_date', 'img_avatar'
+    'is_active', 'is_staff', 'is_superuser', 'groups', 'phone', 'address', 'about',
+    'user_permissions', 'membership', 'birth_date', 'img_avatar', 'img_avatar_upload'
 )
 
 admin.site.register(User, UserAdmin)

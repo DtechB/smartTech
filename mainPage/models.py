@@ -20,6 +20,11 @@ class User(AbstractUser):
     img_avatar = models.CharField(max_length=2083,
                                   default='https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector'
                                           '-avatar-png-image_1541962.jpg')
+    img_avatar_upload = models.ImageField(upload_to="images", null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
+    about = models.TextField(null=True, blank=True)
+    city = models.CharField(max_length=255, null=True, blank=True)
 
 
 class Post(models.Model):
