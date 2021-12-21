@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView
 from mainPage.models import User, SmartPhone
 from .forms import ProfileForm
@@ -12,10 +14,15 @@ def home(request):
     return render(request, 'account/panel.html', context={'phone': queryset})
 
 
-class Profile(LoginRequiredMixin, UpdateView):
-    model = User
-    template_name = 'account/profile.html'
-    form_class = ProfileForm
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect('account:panel')
+    else:
+        form = ProfileForm(instance=request.user)
 
-    def get_object(self, queryset=None):
-        return User.objects.get(pk=self.request.user.pk)
+    return render(request, 'account/profile.html', {'form': form})
