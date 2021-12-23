@@ -24,6 +24,7 @@ urlpatterns = [
     path('login/', views.LoginView.as_view(), name='login'),
     path('register/', signup, name='register'),
     path('admin/', admin.site.urls),
+    path('', include('social_django.urls', namespace='social')),
     path('', include('mainPage.urls')),
     path('', include('django.contrib.auth.urls')),
     path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',

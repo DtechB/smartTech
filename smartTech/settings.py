@@ -20,7 +20,6 @@ LOGIN_REDIRECT_URL = 'account:panel'
 LOGOUT_REDIRECT_URL = 'account:panel'
 LOGIN_URL = 'login'
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -47,7 +46,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'account',
     'widget_tweaks',
-    'django_gravatar'
+    'django_gravatar',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -155,3 +155,13 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
