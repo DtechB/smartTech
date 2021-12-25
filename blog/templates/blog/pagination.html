@@ -3,7 +3,7 @@
         {% if page.has_previous %}
             <li><a href="?page={{ page.previous_page_number }}">previous</a></li>
         {% endif %}
-        <li class="active"><a href="#">2</a></li>
+        <li class="active"><a href="#">{{ page.number }}</a></li>
         {% if page.has_next %}
             <li><a href="?page={{ page.next_page_number }}">next</a></li>
         {% endif %}

@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from mainPage.models import User, SmartPhone
+from mainPage.models import User, SmartPhone, Post
 from .forms import ProfileForm
 from django.http import HttpResponse
 from .forms import SignupForm
@@ -15,8 +15,12 @@ from django.core.mail import EmailMessage
 
 @login_required
 def home(request):
-    queryset = SmartPhone.objects.filter(user=request.user)
-    return render(request, 'account/panel.html', context={'phone': queryset})
+    queryset1 = SmartPhone.objects.filter(user=request.user)
+    queryset2 = Post.objects.filter(userpost=request.user)
+    return render(request, 'account/panel.html', context={
+        'phone': queryset1,
+        'posts': queryset2
+    })
 
 
 @login_required

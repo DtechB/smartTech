@@ -28,39 +28,40 @@
                     <div class="col-lg-8 entries">
 
                         {% for post in posts %}
-                            <article class="entry" style="direction: rtl">
+                            <article class="entry">
 
-                            <div class="entry-img">
-                                <img src="{{ post.postimgurl__img_url }}" alt="" class="img-fluid">
-                            </div>
-
-                            <h2 class="entry-title">
-                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-                            </h2>
-
-                            <div class="entry-meta">
-                                <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                            href="#">{{ post.author }}</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                            href="#">
-                                        <time datetime="2020-01-01">{{ post.created}}</time>
-                                    </a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
-                                            href="#">12 Comments</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="entry-content">
-                                <p>
-                                    {{ post.postdescription__description|truncatewords:60 }}
-                                </p>
-                                <div class="read-more">
-                                    <a href="{{ post.get_absolute_url }}">Read More</a>
+                                <div class="entry-img">
+                                    <img src="{{ post.img_primary }}" alt="" class="img-fluid w-100">
                                 </div>
-                            </div>
 
-                        </article><!-- End blog entry -->
+                                <h2 class="entry-title">
+                                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                </h2>
+
+                                <div class="entry-meta">
+                                    <ul>
+                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
+                                                href="#">{{ post.author }}</a></li>
+                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
+                                                href="#">
+                                            <time datetime="2020-01-01">{{ post.created }}</time>
+                                        </a></li>
+                                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
+                                                href="#">{{ post.commentcount }} Comments</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="entry-content">
+                                    <div>
+                                        <p>{{ post.postdescription__description|truncatewords:60 }}</p>
+                                    </div>
+
+                                    <div class="read-more">
+                                        <a href="/blog/post/{{ post.slug }}/{{ post.post_id }}">Read More</a>
+                                    </div>
+                                </div>
+
+                            </article><!-- End blog entry -->
                         {% endfor %}
 
                         {% include 'blog/pagination.html' with page=posts %}
