@@ -45,15 +45,25 @@
                                 <img src="{{ phone.img_primary }}"
                                      height="255px" width="100%" alt="">
                                 <div class="portfolio-info">
-                                    <h4>{{ phone.name }}</h4>
-                                    <p>{{ phone.brand }}</p>
-                                    <div class="portfolio-links">
-                                        <a href="{{ phone.img_primary }}"
-                                           data-gallery="portfolioGallery"
-                                           class="portfokio-lightbox" title="{{ phone.name }}"><i
-                                                class="bi bi-search"></i></a>
-                                        <a href="{{ phone.get_absolute_url }}" title="More Details"><i class="bi bi-link"></i></a>
-                                    </div>
+                                    <form method="post" action="" id="form_id">
+                                        {% csrf_token %}
+                                        <h4>{{ phone.name }}</h4>
+                                        <p>{{ phone.brand }}</p>
+                                        <div class="portfolio-links">
+                                            <a href="{{ phone.img_primary }}"
+                                               data-gallery="portfolioGallery"
+                                               class="portfokio-lightbox" title="{{ phone.name }}"><i
+                                                    class="bi bi-search"></i></a>
+                                            <a href="{{ phone.get_absolute_url }}" title="More Details"><i
+                                                    class="bi bi-link"></i></a>
+
+
+                                            <input type="hidden" value="{{ phone.smartphone_id }}" name="id">
+                                            <button type="submit"
+                                               title="Add Comparison"><i class="bi bi-plus"></i>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

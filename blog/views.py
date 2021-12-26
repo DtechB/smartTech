@@ -9,6 +9,7 @@ def blog(request):
     posts = Post.objects.values('title', 'postdescription__description', 'author', 'created', 'comment_user',
                                 'img_primary', 'comment', 'slug', 'post_id').annotate(
         commentcount=Count('comment_user'))
+    all_post = Post.objects.order_by('-updated').all()[:5]
 
     paginator = Paginator(posts, 4)
     page = request.GET.get('page')
@@ -21,7 +22,8 @@ def blog(request):
 
     return render(request, 'blog/blog-content.html', context={
         'posts': posts,
-        'page': page
+        'page': page,
+        'all_post': all_post
     })
 
 
