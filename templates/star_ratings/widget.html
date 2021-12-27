@@ -1,0 +1,6 @@
+{% extends "star_ratings/widget_base.html" %}
+{% block rating_detail %}
+    {% if not user.is_authenticated %}
+        <div>please login first to rate this post</div>
+    {% endif %}
+{% endblock %}

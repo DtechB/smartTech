@@ -2,17 +2,17 @@
 {% load static %}
 
 {% block panel_content %}
-    <section class="dashboard">
+    <div class="dashboard">
         <div class="row">
 
             <!-- Left side columns -->
             <div class="col-lg-8">
-                <div class="pricing col-12 mb-5">
+                <div class="pricing col-12 mb-4">
                     <div class="row gy-4 aos-init aos-animate" data-aos="fade-left">
 
                         <div class="col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
                             <div class="box">
-                                <img src="{% static 'img/img.png' %}" alt="" class="img-fluid w-100" height="200px">
+                                <img src="{% static 'img/img.png' %}" alt="" class="w-100" height="170px">
                                 <h3 class="mt-2" style="color: #183880;">Check our blog</h3>
                                 <a href="{% url 'blog' %}" class="btn-buy">Enter</a>
                             </div>
@@ -20,7 +20,7 @@
 
                         <div class="col-md-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="400">
                             <div class="box">
-                                <img src="{% static 'img/img_1.png' %}" alt="" height="200px" class="img-fluid w-100" >
+                                <img src="{% static 'img/img_1.png' %}" alt="" height="170px" class="w-100" >
                                 <h3 class="mt-2" style="color: #183880;">Choose your phone</h3>
                                 <a href="{% url 'phone:phones' %}" class="btn-buy">Enter</a>
                             </div>
@@ -221,6 +221,6 @@
             </div>
 
         </div>
-    </section>
+    </div>
 
 {% endblock %}

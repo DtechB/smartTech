@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'account',
     'widget_tweaks',
     'django_gravatar',
-    'social_django'
+    'social_django',
+    'star_ratings'
 ]
 
 MIDDLEWARE = [
@@ -165,3 +166,5 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+
+STAR_RATINGS_STAR_HEIGHT = 20
