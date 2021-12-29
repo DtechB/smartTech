@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from . import models
 from .models import User
+from django_summernote.admin import SummernoteModelAdmin
 
 
 UserAdmin.fieldsets[2][1]['fields'] = (

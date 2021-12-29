@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_gravatar',
     'social_django',
-    'star_ratings'
+    'star_ratings',
+    'django_summernote'
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
@@ -168,3 +170,12 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 STAR_RATINGS_STAR_HEIGHT = 20
+
+SUMMERNOTE_THEME = 'bs4'
+
+SUMMERNOTE_CONFIG = {
+    'summernote': {
+        'fontNames': ["Open Sans"],
+        'fontSizes': ['15', '16', '17', '18']
+    },
+}

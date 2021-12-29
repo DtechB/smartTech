@@ -33,7 +33,7 @@
                         <article class="entry entry-single">
 
                             <div class="entry-img">
-                                <img src="{{ posts.img_primary }}" alt="" class="img-fluid w-100">
+                                <img src="{{ posts.img_primary }}" alt="nothing" class="img-fluid w-100">
                             </div>
 
                             <h2 class="entry-title">
@@ -55,7 +55,7 @@
 
                             <div class="entry-content">
                                 <p class="text-justify">
-                                    {{ desc.first.description }}
+                                    {{ desc.first.description|linebreaks }}
                                 </p>
                             </div>
 
