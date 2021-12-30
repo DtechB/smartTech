@@ -149,15 +149,14 @@
                         </ul>
                     </div>
 
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-3">
                         <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
 
                         <div class="news">
                             {% for post in all_posts %}
                                 <div class="post-item clearfix">
-                                    <img src="{{ post.img_primary }}" alt="">
-                                    <h4><a href="{{ post.get_absolute_url }}">{{ post.title|truncatewords:4 }}</a></h4>
-                                    <p>{{ post.postdescription_set.first.description|truncatewords_html:10|linebreaks }}</p>
+                                    <img src="{{ post.img_primary }}" width="80" height="55" alt="">
+                                    <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
                                 </div>
                             {% endfor %}
 

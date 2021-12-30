@@ -5,7 +5,7 @@
 
 from django.contrib.auth import views
 from django.urls import path
-from .views import home, profile
+from . import views
 
 app_name = 'account'
 # urlpatterns = [
@@ -22,6 +22,8 @@ app_name = 'account'
 # ]
 
 urlpatterns = [
-    path('', home, name='panel'),
-    path('profile/', profile, name='profile')
+    path('', views.home, name='panel'),
+    path('profile/', views.profile, name='profile'),
+    path('comparison/', views.comparison, name='comparison'),
+    path('api/<int:pk>/removephone', views.remove_comparison_phone, name='remove_phone')
 ]

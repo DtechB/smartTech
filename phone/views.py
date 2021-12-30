@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from mainPage.models import SmartPhone
-from .forms import AddComparisonForm
 
 
 def index(request):

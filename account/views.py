@@ -1,9 +1,9 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from mainPage.models import User, SmartPhone, Post
 from .forms import ProfileForm
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .forms import SignupForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
@@ -83,3 +83,19 @@ def activate(request, uidb64, token):
         })
     else:
         return HttpResponse('Activation link is invalid!')
+
+
+@login_required
+def comparison(request):
+    queryset = SmartPhone.objects.filter(user=request.user).all()
+    return render(request, 'account/comparison.html', context={
+        'phones': queryset
+    })
+
+
+def remove_comparison_phone(request, pk):
+    user = request.user
+    linke = get_object_or_404(SmartPhone, pk=pk)
+    if user.smartphone_set.count() != 0:
+        linke.user.remove(user)
+    return redirect('account:comparison')

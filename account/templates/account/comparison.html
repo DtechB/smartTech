@@ -1,0 +1,134 @@
+{% extends 'account/index.html' %}
+{% load ratings %}
+{% load static %}
+
+{% block panel_content %}
+    <div class="dashboard">
+        <div class="card">
+            <div class="card-body pt-4">
+                <div class="table-responsive">
+                    <table class="table table-striped text-successtable-border table-bordered border-light">
+                        <thead class="border-light">
+                        <tr class="text-center align-middle">
+                            <th scope="col" class="w-25 p-3">
+                                <img class="img-fluid h-50 w-50" src="{% static 'img/logo_test.png' %}" alt="">
+                                <div class="mt-3">
+                                    <h6>Add and remove any phone you want</h6>
+                                </div>
+                            </th>
+                            {% for phone in phones %}
+                                <th scope="col" class="w-25">
+                                    <img src="{{ phone.img_primary }}" alt=""
+                                         class="shadow rounded-3 mb-2" width="228px" height="130px">
+                                    <div>
+                                        <strong>{{ phone.brand }}</strong>
+                                    </div>
+                                    <strong class="text-secondary">{{ phone.name }}</strong>
+                                    <div class="mt-2">{% ratings phone %}</div>
+                                </th>
+                            {% endfor %}
+                            {% if phones.count == 0 %}
+                                {% for i in '123'|make_list %}
+                                    <th scope="col" class="w-25">
+                                        <a href="{% url 'phone:phones' %}" class="btn btn-primary mb-3">ADD Phone</a>
+                                        <div>
+                                            <strong>add a new phone to compare</strong>
+                                        </div>
+                                    </th>
+                                {% endfor %}
+                            {% elif phones.count == 1 %}
+                                {% for i in '12'|make_list %}
+                                    <th scope="col" class="w-25">
+                                        <a href="{% url 'phone:phones' %}" class="btn btn-primary mb-3">ADD Phone</a>
+                                        <div>
+                                            <strong>add a new phone to compare</strong>
+                                        </div>
+                                    </th>
+                                {% endfor %}
+                            {% elif phones.count == 2 %}
+                                <th scope="col" class="w-25">
+                                    <a href="{% url 'phone:phones' %}" class="btn btn-primary mb-3">ADD Phone</a>
+                                    <div>
+                                        <strong>add a new phone to compare</strong>
+                                    </div>
+                                </th>
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">Color</th>
+                            {% for phone in phones %}
+                                <td>{{ phone.color }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Network</th>
+                            {% for phone in phones %}
+                                <td>{{ phone.network }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Lunch</th>
+                            {% for phone in phones %}
+                                <td>{{ phone.time_release }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Body</th>
+                            {% for phone in phones %}
+                                <td>{{ phone.body }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Display</th>
+                            {% for phone in phones %}
+                                <td>{{ phone.display }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">OS</th>
+                            {% for phone in phones %}
+                                <td>{{ phone.os }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Cpu</th>
+                            {% for phone in phones %}
+                                <td>{{ phone.cpu }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Memory</th>
+                            {% for phone in phones %}
+                                <td>{{ phone.memory }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Camera</th>
+                            {% for phone in phones %}
+                                <td>{{ phone.camera }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Battery</th>
+                            {% for phone in phones %}
+                                <td>{{ phone.battery }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr class="text-center">
+                            <td></td>
+                            {% for phone in phones %}
+                                <td>
+                                    <a href="{% url 'account:remove_phone' phone.smartphone_id %}"
+                                       class="btn btn-danger"><i class="bi bi-x me-2"></i>remove</a>
+                                </td>
+                            {% endfor %}
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
