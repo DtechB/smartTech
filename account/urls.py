@@ -25,5 +25,7 @@ urlpatterns = [
     path('', views.home, name='panel'),
     path('profile/', views.profile, name='profile'),
     path('comparison/', views.comparison, name='comparison'),
-    path('api/<int:pk>/removephone', views.remove_comparison_phone, name='remove_phone')
+    path('favorite/', views.favorite, name='favorite'),
+    path('api/<int:pk>/removephone', views.remove_comparison_phone, name='remove_phone'),
+    path('api/<int:pk>/removepost', views.remove_favorite_post, name='remove_post')
 ]

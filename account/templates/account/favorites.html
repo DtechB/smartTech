@@ -1,0 +1,63 @@
+{% extends 'account/index.html' %}
+{% load ratings %}
+{% load static %}
+
+{% block panel_content %}
+    <div class="dashboard favorite">
+        {% if posts.count > 0 %}
+            {% for post in posts %}
+                <div class="card mb-4 pe-2">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="rounded-3 w-100" src="{{ post.img_primary }}" height="280px" alt="">
+                        </div>
+                        <div class="col-md-7 mt-3">
+                            <div class="d-flex">
+                            <span class="badge bg-success mb-2 me-2"><i
+                                    class="bi bi-heart-fill me-2 small fw-bold"></i>{{ post.category }}</span>
+                                <a href="{% url 'account:remove_post' post.post_id %}"
+                                   class="badge bg-danger mb-2 text-white">
+                                    <i class="bi bi-x-circle me-2"></i>remove</a>
+                            </div>
+                            <h4><a href="{{ post.get_absolute_url }}" class="text-dark fw-bold">{{ post.title }}</a>
+                            </h4>
+                            <div class="entry-meta">
+                                <ul class="d-flex justify-content-start p-0">
+                                    <li class="d-flex align-items-center pe-3"><i
+                                            class="bi bi-person me-2 text-primary"></i> <a href="#"
+                                                                                           class="text-secondary">{{ post.author }}</a>
+                                    </li>
+                                    <li class="d-flex align-items-center pe-3"><i
+                                            class="bi bi-clock me-2 text-primary"></i>
+                                        <a href="#" class="text-secondary">
+                                            <time datetime="2020-01-01">{{ post.updated|date }}</time>
+                                        </a></li>
+                                    <li class="d-flex align-items-center pe-3"><i
+                                            class="bi bi-chat-dots me-2 text-primary"></i> <a href="#"
+                                                                                              class="text-secondary">3
+                                        Comments</a></li>
+                                </ul>
+                            </div>
+                            <p>{{ post.postdescription_set.first.description|truncatewords:35 }}</p>
+                            <div>{% ratings post %}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+                <div class="card p-3">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3>Sorry!</h3>
+                        </div>
+                        <h5 class="mb-4">You don't have any post that you like it please return to blog page and chose one or many
+                            post</h5>
+                        <a href="{% url 'blog' %}" class="btn btn-primary">Return</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

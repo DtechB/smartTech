@@ -99,3 +99,17 @@ def remove_comparison_phone(request, pk):
     if user.smartphone_set.count() != 0:
         linke.user.remove(user)
     return redirect('account:comparison')
+
+
+@login_required
+def favorite(request):
+    queryset = Post.objects.filter(userpost=request.user).all()
+    return render(request, 'account/favorites.html', context={'posts': queryset})
+
+
+def remove_favorite_post(request, pk):
+    user = request.user
+    post = get_object_or_404(Post, post_id=pk)
+    if user.post_set.count() != 0:
+        post.userpost.remove(user)
+    return redirect('account:favorite')
