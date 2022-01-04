@@ -20,6 +20,7 @@
         </section><!-- End Breadcrumbs -->
 
         <!-- ======= Blog Section ======= -->
+
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
 
@@ -27,7 +28,9 @@
 
                     <div class="col-lg-8 entries">
 
-                        {% for post in posts %}
+                        <h3 class="alert alert-primary text-center">result for: {{ search }}</h3>
+
+                        {% for post in all_search %}
                             <article class="entry">
 
                                 <div class="entry-img">
@@ -47,13 +50,13 @@
                                             <time datetime="2020-01-01">{{ post.created }}</time>
                                         </a></li>
                                         <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
-                                                href="#">{{ post.commentcount }} Comments</a></li>
+                                                href="#">{{ post.comment_user.count }} Comments</a></li>
                                     </ul>
                                 </div>
 
                                 <div class="entry-content">
                                     <div class="mb-3">
-                                        {{ post.postdescription__description|truncatewords:60 }}
+                                        {{ post.postdescription_set.first.description|truncatewords:60 }}
                                     </div>
 
                                     <div class="read-more">
@@ -64,7 +67,19 @@
                             </article><!-- End blog entry -->
                         {% endfor %}
 
-                        {% include 'blog/pagination.html' with page=posts %}
+                        <div class="blog-pagination">
+                            <ul class="justify-content-center">
+                                {% if page_obj.has_previous %}
+                                    <li><a href="{% url 'search' page_obj.previous_page_number %}?q={{ search }}">previous</a>
+                                    </li>
+                                {% endif %}
+                                <li class="active"><a href="#">{{ page_obj.number }}</a></li>
+                                {% if page_obj.has_next %}
+                                    <li><a href="{% url 'search' page_obj.next_page_number %}?q={{ search }}">next</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
 
                     </div><!-- End blog entries list -->
 
@@ -72,18 +87,10 @@
 
                         <div class="sidebar">
 
-                            <h3 class="sidebar-title">Search</h3>
-                            <div class="sidebar-item search-form">
-                                <form action="{% url 'search' %}">
-                                    <input type="text" name="q" class="form-control">
-                                    <button type="submit"><i class="bi bi-search"></i></button>
-                                </form>
-                            </div><!-- End sidebar search formn-->
-
                             <h3 class="sidebar-title">Categories</h3>
                             <div class="sidebar-item categories">
                                 <ul>
-                                    <li><a href="#">General <span>(25)</span></a></li>
+                                    <li><a href="#">Apple <span>(25)</span></a></li>
                                     <li><a href="#">Lifestyle <span>(12)</span></a></li>
                                     <li><a href="#">Travel <span>(5)</span></a></li>
                                     <li><a href="#">Design <span>(22)</span></a></li>
@@ -133,4 +140,3 @@
 
     </main><!-- End #main -->
 {% endblock %}
-

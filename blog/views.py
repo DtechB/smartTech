@@ -1,6 +1,8 @@
 from django.db.models import Count
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import ListView
+from django.db.models import Q
 from mainPage.models import Post, PostDescription, Comment
 from .forms import CommentForm
 
@@ -51,3 +53,18 @@ def single_blog(request, post, pk):
         'new_comment': new_comment,
         'all_post': all_post
     })
+
+
+class SearchList(ListView):
+    paginate_by = 3
+    template_name = 'blog/blog-search.html'
+    context_object_name = 'all_search'
+
+    def get_queryset(self):
+        search = self.request.GET.get('q')
+        return Post.objects.filter(Q(postdescription__description__icontains=search) | Q(title__icontains=search))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search'] = self.request.GET.get('q')
+        return context

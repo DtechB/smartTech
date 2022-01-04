@@ -7,6 +7,8 @@ import debug_toolbar
 urlpatterns = [
     path('', views.blog, name='blog'),
     path('post/<slug:post>/<int:pk>/', views.single_blog, name='post'),
+    path('search/', views.SearchList.as_view(), name='search'),
+    path('search/page/<int:page>/', views.SearchList.as_view(), name='search'),
     path('__debug__/', include(debug_toolbar.urls))
 ]
 
