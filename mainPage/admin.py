@@ -53,6 +53,11 @@ class SmartPhoneImgAdmin(admin.ModelAdmin):
     list_editable = ['img_url']
 
 
+@admin.register(models.Offer)
+class OfferAdmin(admin.ModelAdmin):
+    list_display = ['id', 'author_name']
+
+
 @admin.register(models.Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['date_time']

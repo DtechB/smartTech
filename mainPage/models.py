@@ -86,6 +86,8 @@ class SmartPhone(models.Model):
     score = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=0)
     user = models.ManyToManyField(User, blank=True)
     img_primary = models.CharField(max_length=2083, null=True)
+    pros = models.TextField(blank=True, null=True)
+    cons = models.TextField(blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse('phone:single_phone', args=[self.slug, self.smartphone_id])
@@ -108,3 +110,10 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     date_time = models.DateTimeField(auto_now=True)
     body = models.TextField()
+
+
+class Offer(models.Model):
+    smartphone = models.ForeignKey(SmartPhone, on_delete=models.CASCADE, blank=True, null=True, related_name='offer')
+    text = models.TextField()
+    author_name = models.CharField(max_length=128)
+    author_img = models.CharField(max_length=2083)
