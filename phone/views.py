@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
-from mainPage.models import SmartPhone
+from mainPage.models import SmartPhone, SmartPhoneImgUrl, SmartPhoneDescription, User
 
 
 def index(request):
     phones = SmartPhone.objects.all()
-    count_phone = request.user.smartphone_set.count()
+    count_phone = None
+    if request.user.is_authenticated:
+        count_phone = request.user.smartphone_set.count()
+
     return render(request, 'phone/phone-content.html', context={
         'phones': phones,
         'count': count_phone
@@ -14,7 +17,17 @@ def index(request):
 
 def single_phone(request, phone, pk):
     phone = get_object_or_404(SmartPhone, slug=phone, pk=pk)
-    return render(request, 'phone/phone-single.html', {'phones': phone})
+    img_phone = SmartPhoneImgUrl.objects.filter(smartphone=phone)
+    description = SmartPhoneDescription.objects.filter(smartphone=phone)
+    count_phone = None
+    if request.user.is_authenticated:
+        count_phone = request.user.smartphone_set.count()
+    return render(request, 'phone/phone-single.html', {
+        'phones': phone,
+        'imagephone': img_phone,
+        'desc': description,
+        'count': count_phone,
+    })
 
 
 def link(request, pk):

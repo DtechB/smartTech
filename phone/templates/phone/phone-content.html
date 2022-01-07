@@ -1,5 +1,6 @@
 {% extends 'phone/phone-base.html' %}
 {% load static %}
+{% load ratings %}
 
 {% block title %}Smart Tech Phones{% endblock %}
 
@@ -55,12 +56,14 @@
                                         <a href="{{ phone.get_absolute_url }}" title="More Details"><i
                                                 class="bi bi-link"></i></a>
 
-                                        <a href="{% url 'phone:api_add_comparison' phone.smartphone_id %}"
-                                           title="Add Comparison" class="add-phone" data-pk="{{ phone.smartphone_id }}"
-                                           data-count="{{ count }}">
-                                            <i class="bi bi-plus"></i>
-                                        </a>
-
+                                        {% if user.is_authenticated %}
+                                            <a href="{% url 'phone:api_add_comparison' phone.smartphone_id %}"
+                                               title="Add Comparison" class="add-phone"
+                                               data-pk="{{ phone.smartphone_id }}"
+                                               data-count="{{ count }}">
+                                                <i class="bi bi-plus"></i>
+                                            </a>
+                                        {% endif %}
                                     </div>
 
                                 </div>
