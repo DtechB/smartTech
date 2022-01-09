@@ -19,7 +19,7 @@ def single_phone(request, phone, pk):
     phone = get_object_or_404(SmartPhone, slug=phone, pk=pk)
     img_phone = SmartPhoneImgUrl.objects.filter(smartphone=phone)
     description = SmartPhoneDescription.objects.filter(smartphone=phone)
-    offers = Offer.objects.filter(smartphone=phone)
+    offers = Offer.objects.filter(smartphone=phone).first()
     return render(request, 'phone/phone-single.html', {
         'phones': phone,
         'imagephone': img_phone,

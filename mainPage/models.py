@@ -113,7 +113,7 @@ class Comment(models.Model):
 
 
 class Offer(models.Model):
-    smartphone = models.ForeignKey(SmartPhone, on_delete=models.CASCADE, blank=True, null=True, related_name='offer')
+    smartphone = models.OneToOneField(SmartPhone, on_delete=models.CASCADE, null=True, related_name='offer')
     text = models.TextField()
     author_name = models.CharField(max_length=128)
     author_img = models.CharField(max_length=2083)
