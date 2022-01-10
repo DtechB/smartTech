@@ -59,7 +59,7 @@
                                     <div class="read-more">
                                         <a href="{% url 'api_add_favorite' post.post_id %}" class="like"
                                            data-pk="{{ post.post_id }}">
-                                            <i class="bi bi-heart" id="like_{{ post.post_id }}"></i>
+                                            <i class="bi {% if post in user.user.all %}bi-heart-fill{% else %}bi-heart{% endif %}" id="like_{{ post.post_id }}"></i>
                                         </a>
                                         <a href="/blog/post/{{ post.slug }}/{{ post.post_id }}">Read More</a>
                                     </div>

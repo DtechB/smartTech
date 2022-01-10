@@ -21,19 +21,11 @@
             const url = $(this).attr("href")
             const id = $(this).attr("data-pk")
             const link = "api/" + id
+            $("#like_" + id).toggleClass('bi-heart bi-heart-fill')
             $.ajax({
                 url: url,
                 success: function (success) {
-                    $.ajax({
-                        url: link,
-                        success: function (s) {
-                            if(s.user) {
-                                $("#like_" + id).removeClass('bi-heart').addClass('bi-heart-fill')
-                            } else {
-                                $("#like_" + id).removeClass('bi-heart-fill').addClass('bi-heart')
-                            }
-                        }
-                    })
+                    console.log("success")
                 }
             })
         })
