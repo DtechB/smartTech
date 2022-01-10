@@ -1,32 +1,18 @@
-from django.db.models import Count
-from django.shortcuts import render, get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
+from django.http import JsonResponse
 from django.db.models import Q
 from mainPage.models import Post, PostDescription, Comment
 from .forms import CommentForm
 
 
-def blog(request):
-    posts = Post.objects.values('title', 'postdescription__description', 'author', 'created', 'comment_user',
-                                'img_primary', 'comment', 'slug', 'post_id').annotate(
-        commentcount=Count('comment_user'))
-    all_post = Post.objects.order_by('-updated').all()[:5]
+class Blog(ListView):
+    paginate_by = 4
+    template_name = 'blog/blog-content.html'
+    context_object_name = 'posts'
 
-    paginator = Paginator(posts, 4)
-    page = request.GET.get('page')
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        posts = paginator.page(1)
-    except EmptyPage:
-        posts = paginator.page(paginator.num_pages)
-
-    return render(request, 'blog/blog-content.html', context={
-        'posts': posts,
-        'page': page,
-        'all_post': all_post
-    })
+    def get_queryset(self):
+        return Post.objects.all()
 
 
 def single_blog(request, post, pk):
@@ -68,3 +54,22 @@ class SearchList(ListView):
         context = super().get_context_data(**kwargs)
         context['search'] = self.request.GET.get('q')
         return context
+
+
+def linked(request, pk):
+    user = request.user
+    linke = get_object_or_404(Post, pk=pk)
+    return JsonResponse({
+        'posts': user.post_set.count(),
+        'user': user.is_authenticated
+    })
+
+
+def add_favorite_post(request, pk):
+    user = request.user
+    linke = get_object_or_404(Post, pk=pk)
+    if user in linke.userpost.all():
+        linke.userpost.remove(user)
+    else:
+        linke.userpost.add(user)
+    return redirect('blog')

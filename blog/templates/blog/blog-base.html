@@ -14,5 +14,29 @@
 {% endblock %}
 
 {% block footer-refrences %}
+    <script>
+
+        $(".like").click(function (e) {
+            e.preventDefault()
+            const url = $(this).attr("href")
+            const id = $(this).attr("data-pk")
+            const link = "api/" + id
+            $.ajax({
+                url: url,
+                success: function (success) {
+                    $.ajax({
+                        url: link,
+                        success: function (s) {
+                            if(s.user) {
+                                $("#like_" + id).removeClass('bi-heart').addClass('bi-heart-fill')
+                            } else {
+                                $("#like_" + id).removeClass('bi-heart-fill').addClass('bi-heart')
+                            }
+                        }
+                    })
+                }
+            })
+        })
+    </script>
     <script src="{% static 'js/script-blog.js' %}"></script>
 {% endblock %}

@@ -53,10 +53,14 @@
 
                                 <div class="entry-content">
                                     <div class="mb-3">
-                                        {{ post.postdescription__description|truncatewords:60 }}
+                                        {{ post.postdescription_set.first.description|truncatewords:60 }}
                                     </div>
 
                                     <div class="read-more">
+                                        <a href="{% url 'api_add_favorite' post.post_id %}" class="like"
+                                           data-pk="{{ post.post_id }}">
+                                            <i class="bi bi-heart" id="like_{{ post.post_id }}"></i>
+                                        </a>
                                         <a href="/blog/post/{{ post.slug }}/{{ post.post_id }}">Read More</a>
                                     </div>
                                 </div>
@@ -64,7 +68,7 @@
                             </article><!-- End blog entry -->
                         {% endfor %}
 
-                        {% include 'blog/pagination.html' with page=posts %}
+                        {% include 'blog/pagination.html' %}
 
                     </div><!-- End blog entries list -->
 
@@ -94,7 +98,7 @@
 
                             <h3 class="sidebar-title">Recent Posts</h3>
                             <div class="sidebar-item recent-posts">
-                                {% for post in all_post %}
+                                {% for post in posts %}
                                     <div class="post-item clearfix">
                                         <img src="{{ post.img_primary }}" alt="">
                                         <h4><a href="{{ post.get_absolute_url }}">{{ post.title|truncatewords:4 }}</a>
