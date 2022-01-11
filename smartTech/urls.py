@@ -36,5 +36,7 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls'))
 ]
 
+handler404 = 'mainPage.views.not_found_404'
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
