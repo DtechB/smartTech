@@ -1,0 +1,31 @@
+{% extends 'account/index.html' %}
+{% load static %}
+
+{% block panel_content %}
+    <div class="pagetitle">
+        <h1>Contact</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'account:panel' %}">Home</a></li>
+                <li class="breadcrumb-item active">Contact</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <div class="contact">
+        <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+            <div class="card p-3">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3>Successful</h3>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h5 class="me-3 mb-0">Your message has been sent. Thank you!</h5>
+                        <a href="{% url 'account:panel' %}" class="me-3">Account Panel</a>
+                        <a href="{% url 'main-page-index' %}">Main Page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

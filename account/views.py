@@ -113,3 +113,25 @@ def remove_favorite_post(request, pk):
     if user.post_set.count() != 0:
         post.userpost.remove(user)
     return redirect('account:favorite')
+
+
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        mail_subject = request.POST.get('subject')
+        message = f'Hi {name} dear,\n'\
+                  + request.POST.get('message') \
+                  + '\n we check your question and You will be answered as soon as ' \
+                    'possible after the review.\nThanks, SmartTech.'
+        to_email = request.POST.get('email')
+        email = EmailMessage(
+            mail_subject, message, to=[to_email]
+        )
+        email.send()
+        return redirect('account:contact_sent')
+
+    return render(request, 'account/contact.html')
+
+
+def contact_sent(request):
+    return render(request, 'account/contact_confirm.html')

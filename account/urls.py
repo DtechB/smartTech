@@ -27,5 +27,7 @@ urlpatterns = [
     path('comparison/', views.comparison, name='comparison'),
     path('favorite/', views.favorite, name='favorite'),
     path('api/<int:pk>/removephone', views.remove_comparison_phone, name='remove_phone'),
-    path('api/<int:pk>/removepost', views.remove_favorite_post, name='remove_post')
+    path('api/<int:pk>/removepost', views.remove_favorite_post, name='remove_post'),
+    path('contact/', views.contact, name='contact_us'),
+    path('contact/sent/', views.contact_sent, name='contact_sent')
 ]
