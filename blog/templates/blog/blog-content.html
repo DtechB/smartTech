@@ -57,10 +57,13 @@
                                     </div>
 
                                     <div class="read-more">
-                                        <a href="{% url 'api_add_favorite' post.post_id %}" class="like"
-                                           data-pk="{{ post.post_id }}">
-                                            <i class="bi {% if post in user.user.all %}bi-heart-fill{% else %}bi-heart{% endif %}" id="like_{{ post.post_id }}"></i>
-                                        </a>
+                                        {% if user.is_authenticated %}
+                                            <a href="{% url 'api_add_favorite' post.post_id %}" class="like"
+                                               data-pk="{{ post.post_id }}">
+                                                <i class="bi {% if post in user.user.all %}bi-heart-fill{% else %}bi-heart{% endif %}"
+                                                   id="like_{{ post.post_id }}"></i>
+                                            </a>
+                                        {% endif %}
                                         <a href="/blog/post/{{ post.slug }}/{{ post.post_id }}">Read More</a>
                                     </div>
                                 </div>
@@ -133,6 +136,34 @@
                 </div>
 
             </div>
+
+            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                <div id="liveToast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="{% static 'img/logo_test.png' %}" class="rounded me-2" alt="..." width="25px">
+                        <strong class="me-auto">SmartTech</strong>
+                        <small>now</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body ">
+                        This post successfully added to your favorites.
+                    </div>
+                </div>
+            </div>
+            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="{% static 'img/logo_test.png' %}" class="rounded me-2" alt="..." width="25px">
+                        <strong class="me-auto">SmartTech</strong>
+                        <small>now</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        This post successfully removed from your favorites.
+                    </div>
+                </div>
+            </div>
+
         </section><!-- End Blog Section -->
 
     </main><!-- End #main -->

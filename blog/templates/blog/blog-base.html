@@ -18,10 +18,19 @@
 
         $(".like").click(function (e) {
             e.preventDefault()
+            let toast1 = $("#liveToast1")
+            let toast2 = $("#liveToast2")
             const url = $(this).attr("href")
             const id = $(this).attr("data-pk")
             const link = "api/" + id
-            $("#like_" + id).toggleClass('bi-heart bi-heart-fill')
+            let like_btn = $("#like_" + id)
+            like_btn.toggleClass('bi-heart bi-heart-fill')
+            let t;
+            if(like_btn.hasClass('bi-heart'))
+                t = new bootstrap.Toast(toast2)
+            else
+                t = new bootstrap.Toast(toast1)
+            t.show()
             $.ajax({
                 url: url,
                 success: function (success) {
