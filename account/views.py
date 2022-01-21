@@ -19,11 +19,13 @@ from django.core.mail import EmailMessage
 def home(request):
     queryset1 = SmartPhone.objects.filter(user=request.user)
     queryset2 = Post.objects.filter(userpost=request.user)
-    queryset3 = Post.objects.order_by('-updated').all()[:6]
+    ran = range(3 - queryset1.count())
+    queryset3 = Post.objects.order_by('-updated').all()[:7]
     return render(request, 'account/panel.html', context={
         'phone': queryset1,
         'posts': queryset2,
-        'all_posts': queryset3
+        'all_posts': queryset3,
+        'range': ran
     })
 
 

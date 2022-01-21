@@ -1,5 +1,6 @@
 {% extends 'account/index.html' %}
 {% load static %}
+{% load ratings %}
 
 {% block panel_content %}
     <div class="dashboard">
@@ -29,125 +30,59 @@
                     </div>
                 </div>
 
-                {% if phone.count != 0 %}
-                    <div class="col-12">
-                        <div class="card top-selling">
+                <div class="col-12">
+                    <div class="card top-selling">
 
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                        class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
+                        <div class="card-body pb-0">
+                            <h5 class="card-title">Recent add phones <span>| Comparison</span></h5>
 
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                                </ul>
-                            </div>
-                            <div class="card-body pb-0">
-                                <h5 class="card-title">Recent add phones <span>| Comparison</span></h5>
-
-                                <table class="table table-borderless">
-                                    <thead>
+                            <table class="table table-borderless">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Img</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Brand</th>
+                                    <th scope="col">Score</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for phones in phone %}
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Img</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Brand</th>
-                                        <th scope="col">Score</th>
+                                        <td class="fw-bold">{{ phones.smartphone_id }}</td>
+                                        <th scope="row"><a href="#"><img src="{{ phones.img_primary }}"
+                                                                         alt=""></a>
+                                        </th>
+                                        <td><a href="#" class="text-primary fw-bold">{{ phones.name }}</a>
+                                        </td>
+                                        <td>{{ phones.brand }}</td>
+                                        <td>{{ phones.score }}</td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for phones in phone %}
-                                        <tr>
-                                            <td class="fw-bold">{{ phones.smartphone_id }}</td>
-                                            <th scope="row"><a href="#"><img src="{{ phones.img_primary }}"
-                                                                             alt=""></a>
-                                            </th>
-                                            <td><a href="#" class="text-primary fw-bold">{{ phones.name }}</a>
-                                            </td>
-                                            <td>{{ phones.brand }}</td>
-                                            <td>{{ phones.score }}</td>
-                                        </tr>
-                                    {% endfor %}
+                                {% endfor %}
+                                {% for num in range %}
+                                    <tr>
+                                        <td class="fw-bold">
+                                            <div><a href="{% url 'phone:phones' %}">Add</a></div>
+                                        </td>
+                                        <td><div class="bg-secondary" style="height: 2rem; border-radius: 10px"></div></td>
+                                        <td><div class="bg-secondary" style="height: 2rem; border-radius: 10px"></div></td>
+                                        <td><div class="bg-secondary" style="height: 2rem; border-radius: 10px"></div></td>
+                                        <td><div class="bg-secondary" style="height: 2rem; border-radius: 10px"></div></td>
+                                    </tr>
+                                {% endfor %}
 
-                                    </tbody>
-                                </table>
+                                </tbody>
+                            </table>
 
-                            </div>
                         </div>
                     </div>
-                {% endif %}
+                </div>
 
-                {% if posts.count != 0 %}
-                    <div class="col-12">
-                        <div class="card top-selling">
-
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                                </ul>
-                            </div>
-                            <div class="card-body pb-0">
-                                <h5 class="card-title">Recent Posts <span>| Favorite</span></h5>
-
-                                <table class="table table-borderless">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Img</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Author</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for post in posts %}
-                                        <tr>
-                                            <td class="fw-bold">{{ post.post_id }}</td>
-                                            <th scope="row"><a href="#"><img src="{{ post.img_primary }}" alt=""></a>
-                                            </th>
-                                            <td><a href="#"
-                                                   class="text-primary fw-bold">{{ post.title|truncatewords:5 }}</a>
-                                            </td>
-                                            <td>{{ post.category }}</td>
-                                            <td>{{ post.author }}</td>
-                                        </tr>
-                                    {% endfor %}
-
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
             </div>
             <!-- Right side columns -->
             <div class="col-lg-4">
 
                 <div class="card">
-                    <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
-
-                            <li><a class="dropdown-item" href="#">Today</a></li>
-                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                    </div>
 
                     <div class="card-body pb-3">
                         <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
@@ -159,13 +94,71 @@
                                     <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
                                 </div>
                             {% endfor %}
-
                         </div><!-- End sidebar recent posts-->
-
+                    </div>
+                    <div class="text-center p-2">
+                        <a href="{% url 'blog' %}" class="text-primary">Read more</a>
                     </div>
                 </div>
             </div>
 
+            <!-- End right sidebar and begin post favorites -->
+            {% if posts.count != 0 %}
+                <div class="col-12">
+                    <div class="card top-selling">
+
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                    <h6>Filter</h6>
+                                </li>
+
+                                <li><a class="dropdown-item" href="#">Today</a></li>
+                                <li><a class="dropdown-item" href="#">This Month</a></li>
+                                <li><a class="dropdown-item" href="#">This Year</a></li>
+                            </ul>
+                        </div>
+                        <div class="card-body pb-0">
+                            <h5 class="card-title">Recent Posts <span>| Favorite</span></h5>
+
+                            <table class="table table-borderless">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Img</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Published</th>
+                                    <th scope="col">Author</th>
+                                    <th scope="col">Rate</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for post in posts %}
+                                    <tr>
+                                        <td class="fw-bold">{{ post.post_id }}</td>
+                                        <th scope="row"><a href="{{ post.get_absolute_url }}"><img src="{{ post.img_primary }}" alt=""></a>
+                                        </th>
+                                        <td><a href="{{ post.get_absolute_url }}"
+                                               class="text-primary fw-bold">{{ post.title|truncatewords:7 }}</a>
+                                        </td>
+                                        <td>{{ post.category }}</td>
+                                        <td>{{ post.publish|date }}</td>
+                                        <td>{{ post.author }}</td>
+                                        <td>
+                                            <div>{% ratings post 16 16 %}</div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 
