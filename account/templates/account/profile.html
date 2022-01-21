@@ -77,19 +77,25 @@
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                    <!-- Profile Edit Form -->
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="" id="form_user">
                         {% csrf_token %}
                         <div class="row mb-3">
                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                             <div class="col-md-8 col-lg-9">
-                                <img src="{{ user.img_avatar_upload.url }}" width="100px" height="100px" alt="Profile"
-                                     class="pb-2">
-                                {{ form.img_avatar_upload|add_class:"form-control" }}
+                                <div id="imgBox" class="mb-2" style="width: 400px"></div>
+                                {{ image_form.img_avatar_upload|add_class:"form-control" }}
                             </div>
                         </div>
-
+                    </form>
+                    <div class="row mb-3">
+                        <div class="col-md-4 col-lg-3 col-form-label"></div>
+                        <div class="col-md-8 col-lg-9">
+                            <button type="submit" class="my-2 d-none btn btn-primary" id="submit_btn">confirm</button>
+                        </div>
+                    </div>
+                    <!-- Profile Edit Form -->
+                    <form action="" method="post">
+                        {% csrf_token %}
                         <div class="row mb-3">
                             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
                             <div class="col-md-8 col-lg-9">

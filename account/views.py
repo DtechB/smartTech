@@ -1,8 +1,10 @@
+import json
+
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from mainPage.models import User, SmartPhone, Post
-from .forms import ProfileForm
+from .forms import ProfileForm, AvatarForm
 from django.http import HttpResponse, JsonResponse
 from .forms import SignupForm
 from django.contrib.sites.shortcuts import get_current_site
@@ -27,16 +29,24 @@ def home(request):
 
 @login_required
 def profile(request):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your profile is updated successfully')
-            return redirect('account:panel')
-    else:
-        form = ProfileForm(instance=request.user)
+    user = request.user
+    form = ProfileForm(request.POST or None, instance=request.user)
+    image_form = AvatarForm(request.POST or None, request.FILES or None, instance=request.user)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Your profile is updated successfully')
+        return redirect('account:panel')
 
-    return render(request, 'account/profile.html', {'form': form})
+    if image_form.is_valid():
+        image_form.save()
+        qs = User.objects.get(id=user.id)
+        im = str(qs.img_avatar_upload.url)
+        return JsonResponse({
+            'message': 'works',
+            'img': im
+        })
+
+    return render(request, 'account/profile.html', {'form': form, 'image_form': image_form})
 
 
 def signup(request):
@@ -119,7 +129,7 @@ def contact(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         mail_subject = request.POST.get('subject')
-        message = f'Hi {name} dear,\n'\
+        message = f'Hi {name} dear,\n' \
                   + request.POST.get('message') \
                   + '\n we check your question and You will be answered as soon as ' \
                     'possible after the review.\nThanks, SmartTech.'

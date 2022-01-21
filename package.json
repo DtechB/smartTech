@@ -1,0 +1,7 @@
+{
+  "name": "smartTech",
+  "version": "1.0.0",
+  "dependencies": {
+    "cropperjs": "^1.5.12"
+  }
+}

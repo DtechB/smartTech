@@ -57,7 +57,7 @@
                             <div>
                                 <h4>Login successfully</h4>
                                 <p>thank you for login again in our website</p>
-                                <p>{{ user.last_login}}</p>
+                                <p>{{ user.last_login }}</p>
                             </div>
                         </li>
 
@@ -323,4 +323,68 @@
 
 {% block footer-refrences %}
     <script src="{% static 'js/script-account.js' %}"></script>
+    <script>
+
+        const input = document.getElementById('id_img_avatar_upload')
+        const imageBox = document.getElementById('imgBox')
+        const form = document.getElementById('form_user')
+        const submitBtn = document.getElementById('submit_btn')
+        const csrf = document.getElementsByName('csrfmiddlewaretoken')
+
+        input.addEventListener('change', () => {
+            console.log("changed")
+            const image_data = input.files[0]
+            const url = URL.createObjectURL(image_data)
+            imageBox.innerHTML = `<img src="${url}" width="100%" height="100%" id="img_avatar" alt="">`;
+            var $image = $('#img_avatar');
+
+            $image.cropper({
+                aspectRatio: 1,
+                crop: function (event) {
+                    console.log(event.detail.x);
+                    console.log(event.detail.y);
+                    console.log(event.detail.width);
+                    console.log(event.detail.height);
+                    console.log(event.detail.rotate);
+                    console.log(event.detail.scaleX);
+                    console.log(event.detail.scaleY);
+                }
+            });
+
+            // Get the Cropper.js instance after initialized
+            var cropper = $image.data('cropper');
+            submitBtn.classList.remove('d-none');
+
+            submitBtn.addEventListener('click', (e)=>{
+                e.preventDefault()
+                cropper.getCroppedCanvas().toBlob((blob)=>{
+                    const fd = new FormData();
+                    fd.append('csrfmiddlewaretoken', csrf[0].value);
+                    fd.append('img_avatar_upload', blob, 'prof.png');
+                    $.ajax({
+                        type: 'POST',
+                        url: form.action,
+                        enctype: 'multipart/form-data',
+                        data: fd,
+                        success: function (response) {
+                            console.log('success')
+                            console.log(response.img)
+                            const first_image = document.getElementById('img_avatar')
+                            first_image.classList.add('d-none')
+                            imageBox.innerHTML = `<img src="${response.img}" width="200px" height="200px" id="img_avatar1" alt="">`;
+                            submitBtn.classList.add('d-none')
+                        },
+                        error: function (e) {
+                            console.log('error')
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    })
+                })
+            })
+
+        });
+
+    </script>
 {% endblock %}
