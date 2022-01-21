@@ -28,7 +28,7 @@
                     <div class="col-lg-8 entries">
 
                         {% for post in posts %}
-                            <article class="entry">
+                            <article class="entry {{ post.category }}">
 
                                 <div class="entry-img">
                                     <img src="{{ post.img_primary }}" alt="" class="img-fluid w-100">
@@ -71,8 +71,6 @@
                             </article><!-- End blog entry -->
                         {% endfor %}
 
-                        {% include 'blog/pagination.html' %}
-
                     </div><!-- End blog entries list -->
 
                     <div class="col-lg-4">
@@ -90,12 +88,10 @@
                             <h3 class="sidebar-title">Categories</h3>
                             <div class="sidebar-item categories">
                                 <ul>
-                                    <li><a href="#">General <span>(25)</span></a></li>
-                                    <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                                    <li><a href="#">Travel <span>(5)</span></a></li>
-                                    <li><a href="#">Design <span>(22)</span></a></li>
-                                    <li><a href="#">Creative <span>(8)</span></a></li>
-                                    <li><a href="#">Educaion <span>(14)</span></a></li>
+                                    <li><a href="{% url 'blog' %}">All</a></li>
+                                    <li><a href="{% url 'blog' 'APPLE' %}">Apple</a></li>
+                                    <li><a href="{% url 'blog' 'News' %}">News</a></li>
+                                    <li><a href="{% url 'blog' 'Events' %}">Events</a></li>
                                 </ul>
                             </div><!-- End sidebar categories-->
 
@@ -115,7 +111,7 @@
                             <h3 class="sidebar-title">Tags</h3>
                             <div class="sidebar-item tags">
                                 <ul>
-                                    <li><a href="#">App</a></li>
+                                    <li data-filter=".APPLE">App</li>
                                     <li><a href="#">IT</a></li>
                                     <li><a href="#">Business</a></li>
                                     <li><a href="#">Mac</a></li>
@@ -134,7 +130,11 @@
                     </div><!-- End blog sidebar -->
 
                 </div>
-
+                <div class="row">
+                    <div class="col-lg-8 entries">
+                        {% include 'blog/pagination.html' %}
+                    </div>
+                </div>
             </div>
 
             <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">

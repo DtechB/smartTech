@@ -10,9 +10,13 @@ class Blog(ListView):
     paginate_by = 4
     template_name = 'blog/blog-content.html'
     context_object_name = 'posts'
+    cat = None
 
     def get_queryset(self):
-        return Post.objects.all()
+        try:
+            return Post.objects.filter(category=self.kwargs['cat'])
+        except KeyError:
+            return Post.objects.all()
 
 
 def single_blog(request, post, pk):
