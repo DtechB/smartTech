@@ -46,7 +46,7 @@
                                 <img src="{{ phone.img_primary }}"
                                      height="255px" width="100%" alt="">
                                 <div class="portfolio-info">
-                                    <h4>{{ phone.name }}</h4>
+                                    <h4><a href="{{ phone.get_absolute_url }}" style="color: #012970">{{ phone.name }}</a></h4>
                                     <p>{{ phone.brand }}</p>
                                     <div class="portfolio-links">
                                         <a href="{{ phone.img_primary }}"

@@ -36,12 +36,12 @@
                                             data-bs-slide-to="3" aria-label="Slide 4"></button>
                                 </div>
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
+                                    <div class="carousel-item active" data-bs-interval="3000">
                                         <img src="{{ phones.img_primary }}" class="d-block w-100 rounded-3 img-fluid"
                                              alt="...">
                                     </div>
                                     {% for img in imagephone %}
-                                        <div class="carousel-item">
+                                        <div class="carousel-item" data-bs-interval="3000">
                                             <img src="{{ img.img_url }}" class="d-block w-100 rounded-3 img-fluid"
                                                  alt="...">
                                         </div>
@@ -124,7 +124,7 @@
                             </li>
                         </ul>
                         <div class="tab-content" id="borderedTabJustifiedContent">
-                            <div class="tab-pane fade active show p-5 border rounded-3" id="bordered-justified-home"
+                            <div class="tab-pane fade active show p-md-5 p-3 border rounded-3" id="bordered-justified-home"
                                  role="tabpanel"
                                  aria-labelledby="home-tab" style="background-color: #f6f9ff">
                                 <p>{{ desc.first.description|linebreaks }}</p>
@@ -188,7 +188,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade p-5" id="bordered-justified-profit" role="tabpanel"
+                            <div class="tab-pane fade p-lg-5 p-2" id="bordered-justified-profit" role="tabpanel"
                                  aria-labelledby="contact-tab">
                                 <div class="table-responsive border border-2 shadow-sm" style="border-radius: 16px">
                                     <table class="mb-0 table table-striped text-successtable-border table-bordered border-light">
@@ -213,13 +213,13 @@
                             <div class="tab-pane fade" id="bordered-justified-contact" role="tabpanel"
                                  aria-labelledby="contact-tab">
                                 {% if user.is_authenticated %}
-                                    <div class="text-center p-5"
+                                    <div class="text-center p-lg-5 p-2"
                                          style="background: url({% static 'img/Asset1.png' %}) no-repeat top center; background-size: cover">
                                         <img src="{{ offers.author_img }}" class="rounded-circle shadow-lg bg-secondary"
                                              alt="" width="100px" height="100px">
                                         <h4 class="my-2 fw-bold">{{ offers.author_name }}</h4>
                                         <span class="badge rounded-pill bg-primary">our suggest</span>
-                                        <h6 class="mt-3 px-5 mx-5">
+                                        <h6 class="mt-3 px-lg-5 mx-lg-5">
                                             {{ offers.text|linebreaks }}
                                         </h6>
                                     </div>
