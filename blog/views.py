@@ -14,9 +14,9 @@ class Blog(ListView):
 
     def get_queryset(self):
         try:
-            return Post.objects.filter(category=self.kwargs['cat'])
+            return Post.objects.filter(category=self.kwargs['cat']).order_by('title')
         except KeyError:
-            return Post.objects.all()
+            return Post.objects.all().order_by('title')
 
 
 def single_blog(request, post, pk):

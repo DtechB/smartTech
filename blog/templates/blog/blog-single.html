@@ -141,14 +141,14 @@
                             </div><!-- End sidebar search formn-->
 
                             <h3 class="sidebar-title">Categories</h3>
-                            <div class="sidebar-item categories">
+                            <div class="sidebar-item categories ms-3">
                                 <ul>
-                                    <li><a href="#">General <span>(25)</span></a></li>
-                                    <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                                    <li><a href="#">Travel <span>(5)</span></a></li>
-                                    <li><a href="#">Design <span>(22)</span></a></li>
-                                    <li><a href="#">Creative <span>(8)</span></a></li>
-                                    <li><a href="#">Educaion <span>(14)</span></a></li>
+                                    <li><h6><a href="{% url 'blog' %}">All <span>(20)</span></a></h6></li>
+                                    <li><h6><a href="{% url 'blog' 'News' %}">News <span>(8)</span></a></h6></li>
+                                    <li><h6><a href="{% url 'blog' 'Events' %}">Events <span>(3)</span></a></h6></li>
+                                    <li><h6><a href="{% url 'blog' 'Comparison'%}">Comparison <span>(2)</span></a></h6></li>
+                                    <li><h6><a href="{% url 'blog' 'Unveiling' %}">Unveiling <span>(3)</span></a></h6></li>
+                                    <li><h6><a href="{% url 'blog' 'Analysis' %}">Analysis <span>(4)</span></a></h6></li>
                                 </ul>
                             </div><!-- End sidebar categories-->
 
@@ -156,7 +156,7 @@
                             <div class="sidebar-item recent-posts">
                                 {% for post in all_post %}
                                     <div class="post-item clearfix">
-                                        <img src="{{ post.img_primary }}" alt="">
+                                        <img src="{{ post.img_primary }}" height="50px" alt="">
                                         <h4><a href="{{ post.get_absolute_url }}">{{ post.title|truncatewords:4 }}</a>
                                         </h4>
                                         <time datetime="2020-01-01">{{ post.created }}</time>
@@ -164,23 +164,6 @@
                                 {% endfor %}
 
                             </div><!-- End sidebar recent posts-->
-
-                            <h3 class="sidebar-title">Tags</h3>
-                            <div class="sidebar-item tags">
-                                <ul>
-                                    <li><a href="#">App</a></li>
-                                    <li><a href="#">IT</a></li>
-                                    <li><a href="#">Business</a></li>
-                                    <li><a href="#">Mac</a></li>
-                                    <li><a href="#">Design</a></li>
-                                    <li><a href="#">Office</a></li>
-                                    <li><a href="#">Creative</a></li>
-                                    <li><a href="#">Studio</a></li>
-                                    <li><a href="#">Smart</a></li>
-                                    <li><a href="#">Tips</a></li>
-                                    <li><a href="#">Marketing</a></li>
-                                </ul>
-                            </div><!-- End sidebar tags-->
 
                         </div><!-- End sidebar -->
 
