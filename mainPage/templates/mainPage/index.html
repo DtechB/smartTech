@@ -90,11 +90,11 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="count-box">
-                            <i class="bi bi-emoji-smile"></i>
+                            <i class="bi bi-people"></i>
                             <div>
-                                <span data-purecounter-start="0" data-purecounter-end="232"
+                                <span data-purecounter-start="0" data-purecounter-end="{{ user_count }}"
                                       data-purecounter-duration="1" class="purecounter"></span>
-                                <p>Happy Users</p>
+                                <p>All Users</p>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         <div class="count-box">
                             <i class="bi bi-journal-richtext" style="color: #ee6c20;"></i>
                             <div>
-                                <span data-purecounter-start="0" data-purecounter-end="521"
+                                <span data-purecounter-start="0" data-purecounter-end="{{ post_count }}"
                                       data-purecounter-duration="1" class="purecounter"></span>
                                 <p>Posts</p>
                             </div>
@@ -114,7 +114,7 @@
                         <div class="count-box">
                             <i class="bi bi-headset" style="color: #15be56;"></i>
                             <div>
-                                <span data-purecounter-start="0" data-purecounter-end="1463"
+                                <span data-purecounter-start="0" data-purecounter-end="128"
                                       data-purecounter-duration="1" class="purecounter"></span>
                                 <p>Hours Of Support</p>
                             </div>
@@ -123,11 +123,11 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="count-box">
-                            <i class="bi bi-people" style="color: #bb0852;"></i>
+                            <i class="bi bi-phone" style="color: #bb0852;"></i>
                             <div>
-                                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1"
-                                      class="purecounter"></span>
-                                <p>Hard Workers</p>
+                                <span data-purecounter-start="0" data-purecounter-end="{{ phone_count }}"
+                                      data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Smartphones</p>
                             </div>
                         </div>
                     </div>
@@ -299,110 +299,10 @@
                             </div>
                         </div>
                     {% endfor %}
-
                 </div>
-
             </div>
 
         </section><!-- End Portfolio Section -->
-
-        <!-- ======= Team Section ======= -->
-        <section id="team" class="team">
-
-            <div class="container" data-aos="fade-up">
-
-                <header class="section-header">
-                    <h2>Team</h2>
-                    <p>Our hard working team</p>
-                </header>
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="{% static 'img/team/team-1.jpg' %}" class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>Walter White</h4>
-                                <span>Chief Executive Officer</span>
-                                <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut.
-                                    Ipsum exercitationem iure minima enim corporis et voluptate.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="{% static 'img/team/team-2.jpg' %}" class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>Sarah Jhonson</h4>
-                                <span>Product Manager</span>
-                                <p>Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil minima
-                                    suscipit corporis. Voluptate sed quas reiciendis animi neque sapiente.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="{% static 'img/team/team-3.jpg' %}" class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>William Anderson</h4>
-                                <span>CTO</span>
-                                <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt.
-                                    Voluptates enim aut architecto porro aspernatur molestiae modi.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="{% static 'img/team/team-4.jpg' %}" class="img-fluid" alt="">
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                            <div class="member-info">
-                                <h4>Amanda Jepson</h4>
-                                <span>Accountant</span>
-                                <p>Rerum voluptate non adipisci animi distinctio et deserunt amet voluptas. Quia aut
-                                    aliquid doloremque ut possimus ipsum officia.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section><!-- End Team Section -->
 
         <!-- ======= Recent Blog Posts Section ======= -->
         <section id="recent-blog-posts" class="recent-blog-posts">
@@ -415,40 +315,17 @@
                 </header>
 
                 <div class="row">
-
-                    <div class="col-lg-4">
-                        <div class="post-box">
-                            <div class="post-img"><img src="{% static 'img/blog/blog-1.jpg' %}" class="img-fluid"
-                                                       alt=""></div>
-                            <span class="post-date">Tue, September 15</span>
-                            <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur
-                                sit</h3>
-                            <a href="#" class="readmore stretched-link mt-auto"><span>Read More</span><i
-                                    class="bi bi-arrow-right"></i></a>
+                    {% for post in posts %}
+                        <div class="col-lg-4">
+                            <div class="post-box">
+                                <div class="post-img"><img src="{{ post.img_primary }}" class="img-fluid"
+                                                           alt=""></div>
+                                <h3 class="post-title">{{ post.title }}</h3>
+                                <a href="{{ post.get_absolute_url }}" class="readmore stretched-link mt-auto"><span>Read More</span><i
+                                        class="bi bi-arrow-right"></i></a>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="post-box">
-                            <div class="post-img"><img src="{% static 'img/blog/blog-2.jpg' %}" class="img-fluid"
-                                                       alt=""></div>
-                            <span class="post-date">Fri, August 28</span>
-                            <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
-                            <a href="#" class="readmore stretched-link mt-auto"><span>Read More</span><i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="post-box">
-                            <div class="post-img"><img src="{% static 'img/blog/blog-3.jpg' %}" class="img-fluid"
-                                                       alt=""></div>
-                            <span class="post-date">Mon, July 11</span>
-                            <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
-                            <a href="#" class="readmore stretched-link mt-auto"><span>Read More</span><i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
+                    {% endfor %}
 
                 </div>
 
