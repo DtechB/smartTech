@@ -30,7 +30,7 @@
                         {% if all_search.count == 0 %}
                             <h3 class="alert alert-danger text-center">There is no result for: {{ search }}</h3>
                         {% else %}
-                            <h3 class="alert alert-primary text-center">result for: {{ search }}</h3>
+                            <h3 class="alert alert-primary text-center">found {{ all_search.count }} result for :  {{ search }}</h3>
                         {% endif %}
 
                         {% for post in all_search %}
