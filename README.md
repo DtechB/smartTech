@@ -11,7 +11,7 @@
   <hr style="border: 1px solid #00ff00ff;">
 </p>
 
-![](sample%20pic/main.png)
+![](sample%20pic/hole.png)
 
 ## ⚙️ Config the project
 ### After cloning project in your computer first of all you should make venv for this project.
@@ -86,8 +86,11 @@ and then set username and password and go to http://localhost:8000/admin finally
 ### Login page
 ![](sample%20pic/login.png)
 
-### Smartphone page
+### Smartphones page
 ![](sample%20pic/phones.png)
+
+### Smartphone single page
+![](sample%20pic/phone.png)
 
 ### Blog page
 ![](sample%20pic/blog.png)
